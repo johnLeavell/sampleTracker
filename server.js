@@ -18,7 +18,7 @@ connectDB();
 
 // userRoutes
 const userRoutes = require("./routes/userRoutes");
-app.use("/api/users/", userRoutes);
+app.use("/api/", userRoutes);
 //sampleRoutes
 const sampleRoutes = require("./routes/sampleRoutes");
 app.use("/api/samples/", sampleRoutes);

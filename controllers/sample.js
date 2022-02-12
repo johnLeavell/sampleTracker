@@ -48,86 +48,85 @@ const findAll = async (req, res) => {
 };
 
 const findById = async (req, res) => {
-    if (!req.params.id) {
+  if (!req.params.id) {
+    return res
+      .status(400)
+      .send({ message: "Sample not found with id" + req.params.id });
+  }
+  try {
+    const sample = await Sample.findById(req.params.id);
+    return res.status(200).json(sample);
+  } catch (error) {
+    if (error.kind === "ObjectId") {
       return res
-        .status(400)
-        .send({ message: "Sample not found with id" + req.params.id });
+        .status(404)
+        .send({ message: "sample not found with id" + req.params.id });
     }
-    try {
-      const sample = await Sample.findById(req.params.id);
-      return res.status(200).json(sample);
-    } catch (error) {
-      if (error.kind === "ObjectId") {
-        return res
-          .status(404)
-          .send({ message: "sample not found with id" + req.params.id });
-      }
-      return res
-        .status(500)
-        .json({ message: "Error getting sample with id" + req.params.id });
-    }
-  };
-  
-  const updateById = async (req, res) => {
-    if (!req.body) {
-      return res
-        .status(400)
-        .json({ message: "Please enter all required fields" });
-    }
-    try {
-      const sample = await Sample.findByIdAndUpdate(
-        req.params.id,
-        {
-          manholeSiteId: req.body.manholeSiteId,
-          manholeIdNumber: req.body.manholeIdNumber,
-          dateCollected: req.body.dateCollected,
-          timeCollected: req.body.timeCollected,
-          sampleVolume: req.body.sampleVolume,
-          sampleTemperature: req.body.sampleTemperature,
-          samplePh: req.body.samplePh,
-          user: req.body.user,
-        },
-        { new: true }
-      );
-  
-      if (!sample) {
-        return res
-          .status(404)
-          .json({ message: "Sample not found with id " + req.params.id });
-      }
-      res.send(sample);
-    } catch (error) {
-      if (error.kind === "ObjectId") {
-        return res
-          .status(404)
-          .json({ message: "Sample not found with id " + req.params.id });
-      }
-      return res
-        .status(500)
-        .json({ message: "Error updating sample with id" + req.params.id });
-    }
-  };
-  
-  const deleteById = async (req, res) => {
-    if (!req.params.id) {
+    return res
+      .status(500)
+      .json({ message: "Error getting sample with id" + req.params.id });
+  }
+};
+
+const updateById = async (req, res) => {
+  if (!req.body) {
+    return res
+      .status(400)
+      .json({ message: "Please enter all required fields" });
+  }
+  try {
+    const sample = await Sample.findByIdAndUpdate(
+      req.params.id,
+      {
+        manholeSiteId: req.body.manholeSiteId,
+        manholeIdNumber: req.body.manholeIdNumber,
+        dateCollected: req.body.dateCollected,
+        timeCollected: req.body.timeCollected,
+        sampleVolume: req.body.sampleVolume,
+        sampleTemperature: req.body.sampleTemperature,
+        samplePh: req.body.samplePh,
+        user: req.body.user,
+      },
+      { new: true }
+    );
+
+    if (!sample) {
       return res
         .status(404)
         .json({ message: "Sample not found with id " + req.params.id });
     }
-    try {
-      const sample = await Sample.findByIdAndRemove(req.params.id);
-      res.send({ message: "Sample deleted successfully!" });
-    } catch (error) {
-      if (error.kind === "ObjectId" || error.name === "NotFound") {
-        return res
-          .status(404)
-          .json({ message: "Sample not found with id " + req.params.id });
-      }
+    res.send(sample);
+  } catch (error) {
+    if (error.kind === "ObjectId") {
       return res
-        .status(500)
-        .json({ message: "Error deleting sample with id " + req.params.id });
+        .status(404)
+        .json({ message: "Sample not found with id " + req.params.id });
     }
-  };
-  
+    return res
+      .status(500)
+      .json({ message: "Error updating sample with id" + req.params.id });
+  }
+};
 
-module.exports = { create, findAll, findById, updateById, deleteById};
+const deleteById = async (req, res) => {
+  if (!req.params.id) {
+    return res
+      .status(404)
+      .json({ message: "Sample not found with id " + req.params.id });
+  }
+  try {
+    const sample = await Sample.findByIdAndRemove(req.params.id);
+    res.send({ message: "Sample deleted successfully!" });
+  } catch (error) {
+    if (error.kind === "ObjectId" || error.name === "NotFound") {
+      return res
+        .status(404)
+        .json({ message: "Sample not found with id " + req.params.id });
+    }
+    return res
+      .status(500)
+      .json({ message: "Error deleting sample with id " + req.params.id });
+  }
+};
+
+module.exports = { create, findAll, findById, updateById, deleteById };

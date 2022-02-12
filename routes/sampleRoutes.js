@@ -7,5 +7,4 @@ router.post("/", sampleController.create);
 router.get("/:id", sampleController.findById);
 router.put("/:id", sampleController.updateById);
 router.delete("/:id", sampleController.deleteById);
-// router.get("/userSamples", sampleController.findAllUserSamples)
 module.exports = router;

@@ -25,33 +25,19 @@ const create = async (req, res) => {
   }
 };
 
-// const findAll = async (req, res) => {
-//   try {
-//     const userList = await User.find();
-//     return res.status(200).json(userList);
-//   } catch (error) {
-//     if (error) {
-//       console.info("400 at GET /users", error);
-//       return res.status(400).send(error.message);
-//     }
-//     console.error("500 error at GET /users", error);
-//     return res.status(500).send("Something went wrong. Please try again");
-//   }
-// };
-
 const findAll = async (req, res) => {
-    try {
-      const user = await User.find();
-  
-      return res.status(200).json({ user: [...user], success: true });
-    } catch (error) {
-      if (error) {
-        console.log("Find error", error);
-        return res.status(400).json({ error: error.message });
-      }
-      return res.status(500).json({ error: error.message });
+  try {
+    const user = await User.find();
+
+    return res.status(200).json({ user: [...user], success: true });
+  } catch (error) {
+    if (error) {
+      console.log("Find error", error);
+      return res.status(400).json({ error: error.message });
     }
-  };
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 const findById = async (req, res) => {
   if (!req.params.id) {
@@ -131,4 +117,18 @@ const deleteById = async (req, res) => {
   }
 };
 
-module.exports = { create,  findAll, findById, updateById, deleteById };
+const findAllUserSamples = async (req, res) => {
+  try {
+    const users = await User.find().populate("samples", "_id ");
+    console.log(users);
+    return res.status(200).json({ users})
+  } catch (error) {
+    if (error) {
+      console.log("Find error", error);
+      return res.status(400).json({ error: error.message });
+    }
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { create, findAll, findById, updateById, deleteById, findAllUserSamples };
