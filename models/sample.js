@@ -2,15 +2,7 @@ const mongoose = require("mongoose");
 
 const SampleSchema = new mongoose.Schema(
   {
-    manholeIdNumber: [
-      "SMH000017048",
-      "SMH000025183",
-      "SMH000062398",
-      "SMH000072456",
-      "SMH000116477",
-      "SMH000111150",
-      "MHOL23-00116",
-    ],
+    manholeIdNumber: { type: String, required: true },
     dateCollected: { type: String, required: true },
     timeCollected: { type: String, required: true },
     sampleVolume: { type: String, required: true },
