@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { generateToken } = require("../utils/generateJwtToken");
 
 const create = async (req, res) => {
   if (!req.body) {
@@ -12,6 +13,7 @@ const create = async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       phone: req.body.phone,
+      password: req.body.password,
       samples: req.body.samples,
     });
     return res.status(200).json(user);
@@ -73,6 +75,7 @@ const updateById = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
+        password: req.body.password,
         samples: req.body.samples,
       },
       { new: true }
@@ -121,7 +124,7 @@ const findAllUserSamples = async (req, res) => {
   try {
     const users = await User.find().populate("samples", "_id ");
     console.log(users);
-    return res.status(200).json({ users})
+    return res.status(200).json({ users });
   } catch (error) {
     if (error) {
       console.log("Find error", error);
@@ -131,4 +134,63 @@ const findAllUserSamples = async (req, res) => {
   }
 };
 
-module.exports = { create, findAll, findById, updateById, deleteById, findAllUserSamples };
+const userAuth = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    const authUser = await user.matchPassword(password);
+
+    return res.status(200).json({
+      authUser,
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    if (error) {
+      console.log("Auth error", error);
+      return res.status(400).json({ error: error.message });
+    }
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+const userProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(400).send({ message: "User not found" });
+    } else {
+      return res.json({
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+        isAdmin: user.isAdmin,
+      });
+    }
+  } catch (error) {
+    if (error) {
+      console.log("Profile error", error);
+      return res.status(400).json({ error: error.message });
+    }
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  create,
+  findAll,
+  findById,
+  updateById,
+  deleteById,
+  findAllUserSamples,
+  userAuth,
+  userProfile,
+};

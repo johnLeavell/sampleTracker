@@ -9,14 +9,12 @@ const create = async (req, res) => {
   }
   try {
     const sample = await Sample.create({
-      manholeIdNumber: req.body.manholeIdNumber,
       dateCollected: req.body.dateCollected,
       timeCollected: req.body.timeCollected,
       sampleVolume: req.body.sampleVolume,
       samplePh: req.body.samplePh,
       user: req.body.user,
-      manholeSiteId: req.body.manholeSiteId,
-      manHoleIdNumber: req.body.manHoleIdNumber,
+      manholeIdNumber: req.body.manholeIdNumber,
       sampleTemperature: req.body.sampleTemperature,
     });
 
@@ -78,7 +76,6 @@ const updateById = async (req, res) => {
     const sample = await Sample.findByIdAndUpdate(
       req.params.id,
       {
-        manholeSiteId: req.body.manholeSiteId,
         manholeIdNumber: req.body.manholeIdNumber,
         dateCollected: req.body.dateCollected,
         timeCollected: req.body.timeCollected,
