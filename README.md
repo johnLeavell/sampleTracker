@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Sample Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Sample Tracker] is an efficient way to manage, organize, and collect infield waste water samples.
 
-## Available Scripts
+## Objective of the Project
 
-In the project directory, you can run:
+Create a central location for receiving and managing the infield waste water sample collection that will significantly reduce the manual effort required.  Improve, automate, and centralize communiucaiton with Lab Professionals and other parties informed of the proccess and cut donwn the human error issues.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## What Technologies are being used in this project?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The back end application is using a MERN stack (MongoDb, Express, React, Node). The back end application is using [Express](https://expressjs.com/) Framework. The frontend application is using the [React](https://reactjs.org/) framework and several other third party libraries, bootstrapped via the [create-react-app](https://github.com/facebook/create-react-app) tool.[MongoDb](https://www.mongodb.com/) is the database for the application.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In order to get the applicatino up and running, you will need ot install the following:
 
-### `npm run build`
+* NodeJS
+* MongoDb
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installing NodeJS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install a version of NodeJS that starts with `14.16` (e.g. `14.16.0`).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You should be able to find installation instructions for your particular platform here:
 
-### `npm run eject`
+https://nodejs.org/en/download/package-manager/
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installing MongoDB
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+MongoDB is our database. You will need to have MongoDB installed on your computer [MongoDB](https://www.mongodb.com/try/download/community)or you can use MongoDB Atlas and manage your data in the cloud[MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Dependencies & Start Back End
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Start in the root of the project and open the api directory
 
-## Learn More
+```
+cd api
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[mongoose](https://mongoosejs.com/docs/guide.html) is the ODM. This is the preferred way of  communicating with the database, so the tools providee should be leveraged to help you build models and schemas.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Start Front End
 
-### Code Splitting
+We will now start the frontend. Open up a new tab in the terminal and execute the following commands.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+  cd ..
+  cd app
+  npm install
+  npm start
+```
 
-### Analyzing the Bundle Size
+If you navigate to `http://localhost:3000/` you should see the home page!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Set Up Environment Variables
 
-### Making a Progressive Web App
+- Set Up Environment Variables with DotENV Package [DotENV](https://www.npmjs.com/package/dotenv)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+  cd packages
+  cd api
+  touch .env
+```
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add your tokens, MongoUrl, API credentials, and other secrets here they will be ignored by git.
