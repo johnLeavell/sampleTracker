@@ -1,6 +1,6 @@
 # Sample Tracker
 
-[Sample Tracker] is an efficient way to manage, organize, and collect infield waste water samples.
+Sample Tracker is an efficient way to manage, organize, and collect infield waste water samples.
 
 ## Objective of the Project
 
