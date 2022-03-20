@@ -1,12 +1,14 @@
 import React from "react";
-import Button from "./Button/Button"
-import "./style.css"
+import LoginButton from './LoginButton/LoginButton';
+import LogoutButton from './LogoutButton/LogoutButton';
+
 
 const Home = () => {
   return (
-      <div>
-        <Button />
-      </div>
+    <div>
+      <LoginButton/>
+      <LogoutButton />
+    </div>
   );
 };
 
