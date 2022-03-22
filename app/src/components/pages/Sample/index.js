@@ -1,40 +1,11 @@
 import React, { useState } from "react";
+// import { useForm } from "react-hook-form";
 
-import sampleAPI from "../../../utils/sampleAPI";
+// import sampleAPI from "../../../utils/sampleAPI";
 
 const Sample = () => {
-  const [sampleValue, setSampleValue] = useState({
-    id: null,
-    dateCollected: "",
-    timeCollected: "",
-    sampleVolume: "",
-    samplePh: "",
-    user: "",
-    manholeIdNumber: "",
-    sampleTemperature: "",
-    locationName: "",
-  });
 
-  const [allSamples, setAllSamples] = useState([])
-
-  const handleChange = (e) => {
-    setSampleValue(e.currentTarget.value);
-  };
-
-  const handlesubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await sampleAPI.addSample({ sample: sampleValue});
-      setAllSamples((list) => {
-        return[...list, res.data]
-        setSampleValue({sample: ''})
-      })
-    } catch (error) {
-      console.log.error("Error adding sample", error);
-    }
-  };
-
-  return <form handlesubmit={handlesubmit(handlesubmit)}>form</form>;
+  return <form>form</form>;
 };
 
 export default Sample;

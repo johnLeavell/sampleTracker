@@ -12,6 +12,7 @@ router.get("/api/user/:id", userController.findById);
 router.put("/api/user/:id", userController.updateById);
 router.delete("/api/user/:id", userController.deleteById);
 router.get("/api/users/samples", userController.findAllUserSamples);
+
 router.post("/api/user/login", userController.userAuth);
 router.route("/api/userprofile/").get(protect, userController.userProfile);
 router.route("/api/registeruser").post(userController.registerUser).get(protect, admin, userController.findAll);
