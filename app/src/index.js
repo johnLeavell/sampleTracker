@@ -2,17 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+import Navbar from "./components/Navbar/index"
 import Home from "./components/pages/Home/index";
-
+import Login from "./components/pages/Login/index"
+import Sample from "./components/pages/Sample/index";
 
 import reportWebVitals from "./reportWebVitals";
-import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
+      <Navbar></Navbar>
       <Routes>
         <Route exact path={"/"} element={<Home />} />
+        <Route exact path={"/sample"} element={<Sample />} />
+        <Route exact path={"/login"} element={<Login />} />
       </Routes>
     </React.StrictMode>
   </Router>,

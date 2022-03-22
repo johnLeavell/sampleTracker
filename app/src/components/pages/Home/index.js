@@ -1,17 +1,19 @@
-import React from "react";
-import LoginButton from './LoginButton/LoginButton';
-import LogoutButton from './LogoutButton/LogoutButton';
-
+import React, { useState } from "react";
+// import LoginButton from "../login/LoginButton/LoginButton.js";
+// import LogoutButton from "../login/LogoutButton/LogoutButton.js";
+import LoginButton from '../Login/LoginButton/LoginButton'
+import LogoutButton from "../Login/LogoutButton/LogoutButton"
 
 const Home = () => {
   return (
+  
     <div>
-      <LoginButton/>
-      <LogoutButton />
+      {/* <LoginButton /> */}
+      {/* <LogoutButton /> */}Home
     </div>
   );
 };
 
 export default Home;
 
-//welcome to sampling form start login or create account to proceed
+
