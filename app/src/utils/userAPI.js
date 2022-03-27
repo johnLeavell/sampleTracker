@@ -14,6 +14,7 @@ const userAPI = {
   updateUser: function (user) {
       return axios.put(`${API_URL}/api/user/${id}`, user)
   },
+  
   deleteUser: function (id) {
       return axios.delete(`${API_URL}/api/user/${id}`, id)
   }
