@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import UserService from "../../../utils/userService";
 ;
 const Home = () => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState([]);
   useEffect(() => {
     UserService.getPublicContent().then(
       (response) => {
+        console.log(response.data);
         setContent(response.data);
       },
       (error) => {
@@ -20,7 +21,7 @@ const Home = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        {content}
       </header>
     </div>
   );

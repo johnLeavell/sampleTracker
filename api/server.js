@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+var cors = require('cors')
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,6 +11,7 @@ const { notFound, errorHandler } = require("./utils/errorHandler");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors())
 
 mongoose.Promise = global.Promise;
 

@@ -3,7 +3,7 @@ import authHeader from "./authHeader";
 const API_URL = process.env.REACT_APP_API_URL;
 
 const getPublicContent = () => {
-  return axios.get(API_URL + "user");
+  return axios.get(API_URL + "api/users");
 };
 const getUserBoard = () => {
   return axios.get(API_URL + "user", { headers: authHeader() });
