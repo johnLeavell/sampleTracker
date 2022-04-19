@@ -11,7 +11,7 @@ const sampleAPI = {
     return axios.post(`${API_URL}/api/sample`);
   },
 
-  updateSample: function (sample) {
+  updateSample: function (id) {
       return axios.put(`${API_URL}/api/sample/${id}`, sample)
   },
   deleteSample: function (id) {

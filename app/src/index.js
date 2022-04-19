@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/index"
 import Home from "./components/pages/Home/index";
 import Login from "./components/pages/Login/index"
 import Sample from "./components/pages/Sample/index";
+import Register from "./components/pages/Register/index"
 
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Route exact path={"/"} element={<Home />} />
         <Route exact path={"/sample"} element={<Sample />} />
         <Route exact path={"/login"} element={<Login />} />
+        <Route exact path={"/register"} element={<Register />} />
       </Routes>
     </React.StrictMode>
   </Router>,
