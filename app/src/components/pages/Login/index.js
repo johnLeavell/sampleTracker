@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -13,13 +14,15 @@ const required = (value) => {
     );
   }
 };
-const Login = (props) => {
+const Login = () => {
   const form = useRef();
   const checkBtn = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
@@ -36,7 +39,7 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(email, password).then(
         () => {
-          props.history.push("/profile");
+          navigate("/profile");
           window.location.reload();
         },
         (error) => {

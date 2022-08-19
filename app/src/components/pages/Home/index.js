@@ -6,7 +6,7 @@ const Home = () => {
   useEffect(() => {
     UserService.getPublicContent().then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setContent(response.data);
       },
       (error) => {
